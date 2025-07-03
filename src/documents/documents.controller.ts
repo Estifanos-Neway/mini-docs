@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   UseGuards,
-  ValidationPipe,
 } from '@nestjs/common';
 import { DocumentService } from './documents.service';
 import { CreateDocumentDto } from './dto/create-document.dto';
@@ -22,7 +21,7 @@ export class DocumentsController {
 
   @Post()
   createDocument(
-    @Body(ValidationPipe) body: CreateDocumentDto,
+    @Body() body: CreateDocumentDto,
     @CurrentUser() user: AuthUser,
   ) {
     return this.documentsService.createDocument(body, user);
@@ -31,7 +30,7 @@ export class DocumentsController {
   @Put(':id')
   updateDocument(
     @Param('id') id: string,
-    @Body(ValidationPipe) body: CreateDocumentDto,
+    @Body() body: CreateDocumentDto,
     @CurrentUser() user: AuthUser,
   ) {
     return this.documentsService.updateDocument(id, body, user);

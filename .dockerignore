@@ -224,4 +224,3 @@ README.md
 .prettierrc*
 jest.config.*
 tsconfig.json
-nest-cli.json 

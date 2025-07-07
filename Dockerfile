@@ -12,7 +12,7 @@ RUN pnpm exec prisma generate
 
 COPY tsconfig*.json nest-cli.json ./
 COPY src ./src
-RUN pnpm run build
+RUN pnpm build
 
 # 2. Runtime layer
 FROM node:22-alpine
@@ -24,7 +24,9 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --prod --frozen-lockfile
 
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/generated/prisma ./generated/prisma
 
-EXPOSE ${PORT}
-CMD ["node", "dist/main.js"]
+EXPOSE 3000
+CMD ["sh", "-c", "pnpm exec prisma migrate deploy && node dist/main.js"]
+

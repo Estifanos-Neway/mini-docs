@@ -223,4 +223,3 @@ README.md
 .eslintrc*
 .prettierrc*
 jest.config.*
-tsconfig.json

@@ -18,17 +18,11 @@ interface JwtPayload {
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private configService: ConfigService) {
-    const certPath = configService.get<string>('JWT_PUBLIC_KEY_PATH') || '';
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       algorithms: ['RS256'],
       secretOrKey: fs.readFileSync(
-        path.join(
-          __dirname,
-          configService.get<string>('NODE_ENV') === 'production'
-            ? certPath
-            : '../../../' + certPath,
-        ),
+        configService.get<string>('JWT_PUBLIC_KEY_PATH') || '',
         'utf8',
       ),
       ignoreExpiration: false,

@@ -2,6 +2,7 @@
 /dist
 /node_modules
 /build
+/mockauth/node_modules
 
 # Logs
 logs
@@ -56,3 +57,7 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 /generated/prisma
+
+# Secrets
+certs/**
+!certs/*_public.pem

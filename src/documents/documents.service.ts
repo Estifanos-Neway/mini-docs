@@ -59,11 +59,8 @@ export class DocumentService {
     };
   }
 
-  async getDocument(id: string, user: AuthUser): Promise<CommonResponse> {
+  async getDocument(id: string): Promise<CommonResponse> {
     const condition: DocumentLookupCondition = { id };
-    if (user.role !== UserRole.Admin) {
-      condition.ownerId = user.id;
-    }
 
     const doc = await this.databaseService.documents.findFirst({
       where: condition,

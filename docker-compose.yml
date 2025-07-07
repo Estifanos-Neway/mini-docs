@@ -5,7 +5,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      - JWT_PUBLIC_KEY_PATH=${JWT_PUBLIC_KEY_PATH}
+      - JWT_PUBLIC_KEY_PATH=/run/secrets/jwt_public.pem
       - PORT=${PORT}
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - CORS_WHITE_LIST=${CORS_WHITE_LIST}

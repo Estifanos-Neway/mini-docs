@@ -75,6 +75,14 @@ docker-compose up --build
 ## Environment Variables
 - Copy `.env.sample` to `.env` and fill in the required values.
 
+## Generating JWT Keys
+To generate the required JWT private and public keys, run:
+
+```bash
+openssl genrsa -out certs/jwt_private.pem 2048
+openssl rsa -in certs/jwt_private.pem -pubout -out certs/jwt_public.pem
+```
+
 ## Testing
 
 ```bash
@@ -82,4 +90,3 @@ docker-compose up --build
 npm run test
 npm run test:e2e
 ```
-x`
